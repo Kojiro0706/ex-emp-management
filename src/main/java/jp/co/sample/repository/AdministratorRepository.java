@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 import jp.co.sample.domain.Administrator;
 
 @Repository
-public class AdmissionRepository {
+public class AdministratorRepository {
 
 	@Autowired
 	private NamedParameterJdbcTemplate template;
