@@ -1,7 +1,9 @@
 package jp.co.sample.domain;
 
 /**
- * 管理者情報を表すクラス
+ * 管理者情報を表すクラス.
+ * 
+ * @author kojiroogi
  */
 public class Administrator {
 

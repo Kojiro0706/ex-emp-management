@@ -24,12 +24,12 @@ public class EmployeeRepository {
 	
 	/**
 	 * 全件検索を行う.
-	 * 
+	 * @return 管理者情報
 	 */
 	public List<Employee> findAll() {
-		String sql = "SELECT id,name,image,gender,hireDate,mailAddress"
-				+ ",zipCode,address,telephone,salary,characteristics"
-				+ "dependentCount FROM employees ORDER BY hireDate;";
+		String sql = "SELECT id,name,image,gender,hire_date,mail_address"
+				+ ",zip_code,address,telephone,salary,characteristics"
+				+ "dependent_count FROM employees ORDER BY hire_date;";
 
 		List<Employee> employeeList = template.query(sql, EMPLOYEE_ROW_MAPPER);
 
@@ -42,12 +42,13 @@ public class EmployeeRepository {
 
 	/**
 	 * 主キー検索を行う.
-	 *
+	 * @param id
+	 * @return 管理者情報
 	 */
 	public Employee load(Integer id) {
-		String sql = "SELECT id,name,image,gender,hireDate,mailAddress"
-				+ ",zipCode,address,telephone,salary,characteristics"
-				+ "dependentCount FROM employees WHERE id = :id;";
+		String sql = "SELECT id,name,image,gender,hire_date,mail_address"
+				+ ",zip_code,address,telephone,salary,characteristics"
+				+ "dependent_count FROM employees WHERE id = :id;";
 		
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 		return template.queryForObject(sql, param, EMPLOYEE_ROW_MAPPER);
@@ -57,7 +58,7 @@ public class EmployeeRepository {
 	
 	/**
 	 * 渡した従業員情報を更新する.
-	 * 
+	 * @param employee
 	 */
 	public void update(Employee employee) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(employee);
