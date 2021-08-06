@@ -26,7 +26,7 @@ public class Employee {
     /** 電話番号 */
 	private String telephone;
 	/** 給料 */
-	private Integer saraly;
+	private Integer salary;
 	/** 特性 */
 	private String characteristics;
 	/** 扶養人数 */
@@ -37,7 +37,7 @@ public class Employee {
 	}
 
 	public Employee(Integer id, String name, String image, String gender, Date hireDate, String mailAddress,
-			String zipCode, String address, String telephone, Integer saraly, String characteristics,
+			String zipCode, String address, String telephone, Integer salary, String characteristics,
 			Integer dependentsCount) {
 		super();
 		this.id = id;
@@ -49,7 +49,7 @@ public class Employee {
 		this.zipCode = zipCode;
 		this.address = address;
 		this.telephone = telephone;
-		this.saraly = saraly;
+		this.salary = salary;
 		this.characteristics = characteristics;
 		this.dependentsCount = dependentsCount;
 	}
@@ -58,7 +58,7 @@ public class Employee {
 	public String toString() {
 		return "Employee [id=" + id + ", name=" + name + ", image=" + image + ", gender=" + gender + ", hireDate="
 				+ hireDate + ", mailAddress=" + mailAddress + ", zipCode=" + zipCode + ", address=" + address
-				+ ", telephone=" + telephone + ", saraly=" + saraly + ", characteristics=" + characteristics
+				+ ", telephone=" + telephone + ", salary=" + salary + ", characteristics=" + characteristics
 				+ ", dependentsCount=" + dependentsCount + "]";
 	}
 
@@ -134,12 +134,12 @@ public class Employee {
 		this.telephone = telephone;
 	}
 
-	public Integer getSaraly() {
-		return saraly;
+	public Integer getSalary() {
+		return salary;
 	}
 
-	public void setSaraly(Integer saraly) {
-		this.saraly = saraly;
+	public void setSalary(Integer salary) {
+		this.salary = salary;
 	}
 
 	public String getCharacteristics() {
