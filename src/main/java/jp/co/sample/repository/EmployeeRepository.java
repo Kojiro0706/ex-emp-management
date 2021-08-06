@@ -28,8 +28,8 @@ public class EmployeeRepository {
 	 */
 	public List<Employee> findAll() {
 		String sql = "SELECT id,name,image,gender,hire_date,mail_address"
-				+ ",zip_code,address,telephone,salary,characteristics"
-				+ "dependent_count FROM employees ORDER BY hire_date;";
+				+ ",zip_code,address,telephone,salary,characteristics,"
+				+ "dependents_count FROM employees ORDER BY hire_date;";
 
 		List<Employee> employeeList = template.query(sql, EMPLOYEE_ROW_MAPPER);
 
@@ -47,8 +47,8 @@ public class EmployeeRepository {
 	 */
 	public Employee load(Integer id) {
 		String sql = "SELECT id,name,image,gender,hire_date,mail_address"
-				+ ",zip_code,address,telephone,salary,characteristics"
-				+ "dependent_count FROM employees WHERE id = :id;";
+				+ ",zip_code,address,telephone,salary,characteristics,"
+				+ "dependents_count FROM employees WHERE id = :id;";
 		
 		SqlParameterSource param = new MapSqlParameterSource().addValue("id", id);
 		return template.queryForObject(sql, param, EMPLOYEE_ROW_MAPPER);
@@ -63,9 +63,9 @@ public class EmployeeRepository {
 	public void update(Employee employee) {
 		SqlParameterSource param = new BeanPropertySqlParameterSource(employee);
 		String updateSql = "UPDATE employees SET id=:id,name = :name,image=:image,gender=:gender"
-				+ "hireDate=:hireDate,mailAddress=:mailAddress,zipCode=:zipCode,address=:address"
+				+ "hire_date=:hireDate,mail_address=:mailAddress,zip_code=:zipCode,address=:address"
 				+ "telephone=:telephone,salary=:salary,characteristics=:characteristics"
-				+ "dependentCount=:dependentCount WHERE id = :id;";
+				+ "dependents_count=:dependentsCount WHERE id = :id;";
 		
 		template.update(updateSql, param);
 		
