@@ -1,8 +1,11 @@
 package jp.co.sample.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -17,35 +20,32 @@ import jp.co.sample.service.AdministratorService;
  * @author kojiro0706
  *
  */
-/**
- * @author kojiro0706
- *
- */
 @Controller
 @RequestMapping("/")
 public class AdministratorController {
 
 	@Autowired
+	private HttpSession session;
+
+	@Autowired
 	private AdministratorService administratorService;
 
-	/**
-	 * @return 従業員登録する際に格納されるオブジェクト.
-	 */
+
 	@ModelAttribute
 	public InsertAdministratorForm setUpInsertadministratorForm() {
 
 		return new InsertAdministratorForm();
 	}
 
-	/**
-	 * @return ログインする際に格納されるオブジェクト.
-	 */
+	
 	@ModelAttribute
 	public LoginForm setUpLoginForm() {
 		return new LoginForm();
 	}
 
 	/**
+	 * 管理者登録画面に遷移する.
+	 * 
 	 * @return 管理者情報登録画面
 	 */
 	@RequestMapping("/toInsert")
@@ -54,6 +54,8 @@ public class AdministratorController {
 	}
 
 	/**
+	 * 管理者情報を登録する.
+	 * 
 	 * @param form 管理者情報
 	 * @return ログイン画面
 	 */
@@ -75,6 +77,23 @@ public class AdministratorController {
 	@RequestMapping("/")
 	public String toLogin() {
 		return "administrator/login";
+	}
+
+	@RequestMapping("/login")
+	public String login(LoginForm form, Model model) {
+
+
+		Administrator administrator = administratorService.login(form.getMailAddress(), form.getPassword());
+
+		if (administrator == null) {
+			model.addAttribute("message", "メールアドレスまたはパスワードが不正です!");
+			
+			return toLogin();
+		}
+		
+		session.setAttribute("administratorName",administrator.getName() );
+		
+		return "forward:/employee/showList";
 	}
 
 }
