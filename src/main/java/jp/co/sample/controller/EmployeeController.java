@@ -59,4 +59,20 @@ public class EmployeeController {
 
 	}
 
+	/**
+	 * 扶養人数の更新.
+	 * 
+	 * @param form フォーム
+	 * @return 従業員一覧画面
+	 */
+	@RequestMapping("/update")
+	public String update(UpdateEmployeeForm form) {
+		int showDetailId = Integer.parseInt(form.getId());
+		Employee employee = employeeService.showDetail(showDetailId);
+		int dependentsCount = Integer.parseInt(form.getId());
+		employee.setDependentsCount(dependentsCount);
+
+		employeeService.Update(employee);
+		return "/employee/showList";
+	}
 }
