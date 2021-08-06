@@ -69,10 +69,10 @@ public class EmployeeController {
 	public String update(UpdateEmployeeForm form) {
 		int showDetailId = Integer.parseInt(form.getId());
 		Employee employee = employeeService.showDetail(showDetailId);
-		int dependentsCount = Integer.parseInt(form.getId());
+		int dependentsCount = Integer.parseInt(form.getDependentsCount());
 		employee.setDependentsCount(dependentsCount);
 
 		employeeService.Update(employee);
-		return "/employee/showList";
+		return "redirect:/employee/showList";
 	}
 }
