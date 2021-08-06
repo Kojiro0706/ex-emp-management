@@ -79,6 +79,12 @@ public class AdministratorController {
 		return "administrator/login";
 	}
 
+	/**
+	 * ログイン画面の出力.
+	 * @param form 管理者情報フォーム
+	 * @param model
+	 * @return ログイン画面へリダイレクト
+	 */
 	@RequestMapping("/login")
 	public String login(LoginForm form, Model model) {
 
@@ -94,6 +100,17 @@ public class AdministratorController {
 		session.setAttribute("administratorName",administrator.getName() );
 		
 		return "forward:/employee/showList";
+	}
+	
+	/**
+	 * 
+	 * ログアウトする.
+	 * @return ログイン画面
+	 */
+	@RequestMapping("/logout")
+	public String logout() {
+		session.invalidate();
+		return "redirect:/";
 	}
 
 }
